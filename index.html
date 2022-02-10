@@ -18,6 +18,19 @@
               line-height: 25px;
           }
       }
+      .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
     <title></title>
 </head>
@@ -30,7 +43,7 @@
     const urll = `https://api.nasa.gov/planetary/apod?api_key=ORKgwU7bP9fgBdwilZbkyTUBFpNp99Vxjd02Y8Ko`
 
     const getData = async() => {
-        
+        document.querySelector("#app").innerHTML =`<div style="height: 100vh; width: 100%; display: grid; place-items: center;"><div class="loader"></div>Please wait...<p></p></div>`
         const res = await fetch(urll)
         const data = await res.json()
         const{date, explanation, title,  url} = data
