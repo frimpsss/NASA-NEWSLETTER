@@ -49,13 +49,15 @@
         const{date, explanation, title,  url} = data
 
         document.title = `NASA News ${date}`
+        let mediapart
+        isVideo(url) ? mediapart = `<img height= "315" width="420" src="${url}" />`: mediapart = `<iframe width="420" height="315"
+             src="${url}">
+        </iframe>`
         document.querySelector("#app").innerHTML = `<div>
         <h2>NASA Newsletter.</h2>
         <p class="date">${date}</p>
         <p class="topic">${title} </p>
-        <iframe width="420" height="315"
-             src="${url}">
-        </iframe>
+        ${mediapart}
         <div class="content">
         <p>${explanation}</p>
         <a href="https://github.com/frimpsss" target="blank">Akwasi Frimpong</a>
@@ -63,7 +65,11 @@
         </div>`
     }
 
-
+    function isVideo(str){
+        if(str.slice(-3) === 'jpg'){
+            return true
+        }
+    }
     getData()
 </script>
 </html>
